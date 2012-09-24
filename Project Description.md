@@ -1,4 +1,4 @@
-> This is the description of the project.
+> This is the description of the project. It is also up on the wiki page.
 
 FashionForecaster is a project that includes several dimensions:
 
