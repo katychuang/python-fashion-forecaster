@@ -2,7 +2,7 @@
 
 FashionForecaster is a project that includes several dimensions:
 
-* It is a open source code project that we are building for the talk. We would be continuing the development into the foreseeable future. The PyCon conference would be a platform for us to present our ideas to the Python community.
+* It is a open source code project.
 
 * It is a community for those who are interested in Python and fashion. A quick search of python repositories show apps involving weather forecast or shopping tools. FashionForecaster is different in that it will be a display of fashion style trends. Will explain important of trends in the section below on fashion forecasting.
 
