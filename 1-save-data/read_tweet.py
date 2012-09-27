@@ -39,7 +39,8 @@ def read_tweets(user, num_tweets):
 
 
 def save_tweets():
-
+    
+    # this is the list of twitter handles 
     people = ['python', 'pyladies']
 
     import MySQLdb
