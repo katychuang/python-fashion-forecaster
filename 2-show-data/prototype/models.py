@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 import django.forms as forms
-from django.forms.widgets import *
+#from django.forms.widgets import *
 from django.core.mail import send_mail, BadHeaderError
 
 # Create your models here.

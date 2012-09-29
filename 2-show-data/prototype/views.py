@@ -1,14 +1,10 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from wpe.prototype.models import Users, Tweets, ContactForm
-# from django.http import Http404
+from prototype.models import Users, Tweets 
 from django.template import RequestContext, Context
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-
-from django import forms
-from django.forms.widgets import *
-from django.core.mail import send_mail, BadHeaderError
+from django import forms 
 
 import re
 
@@ -49,7 +45,7 @@ def get_query(query_string, search_fields):
 
 # Create your views here.
 def home(request):
-    return render_to_response('prototype/index.html', {'poll': ''})
+    return render_to_response('prototype/index.html')
 
 def search(request):
     query_string = ''
@@ -63,22 +59,3 @@ def search(request):
                           { 'query': query_string, 'results': found_entries },
                           context_instance=RequestContext(request))
 
-def contactview(request):
-    subject = request.POST.get('topic', '')
-    message = request.POST.get('message', '')
-    from_email = request.POST.get('email', '')
-
-    if subject and message and from_email:
-        try:
-            send_mail(subject, message, from_email, ['katychuang@acm.org'])
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-            return HttpResponseRedirect('/contact/thankyou/')
-    else:
-        return render_to_response('prototype/contact.html', {'form': ContactForm()})
-
-    return render_to_response('prototype/contact.html', {'form': ContactForm()},
-			context_instance=RequestContext(request))
-
-def thankyou(request):
-    return render_to_response('prototype/thankyou.html')
