@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block css %}
+{{ block.super }}
+{% endblock css %}
+
+{% block header %}
+    <div id="header">
+            <div id="description">
+                <h1><a href="http://katychuang.pythonanywhere.com">Python Fashion Forecaster</a></h1>
+            </div>
+            <div style="padding-left:60px;background-image: -webkit-linear-gradient(top, white, #F7F7F7 57%, #F2F2F2);">
+                <a href="https://github.com/katychuang/Python-Fashion-Forecaster/wiki/Prototype">ABOUT </a>
+                &nbsp;&nbsp; | &nbsp;&nbsp;
+                <a href="../concept">CONCEPT </a>
+                &nbsp;&nbsp; | &nbsp;&nbsp;
+                <a href="../contact">CONTACT </a>
+            </div>
+            <br />
+    </div>
+{% endblock header %}
+
+{% block main %}
+<h1 style="font-size:3em;font-family:georgia">The Concept</h1><br>
+<p>Sometimes the best way to describe something is with a picture.
+This is how the app works.<br />&nbsp;</p>
+<img src="http://katychuang.pythonanywhere.com/static/PythonFashionForecaster.png" width="500" >
+<br /><br />
+{% endblock %}

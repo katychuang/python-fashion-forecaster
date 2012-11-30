@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block css %}
+{{ block.super }}
+{% endblock css %}
+
+{% block header %}
+    {% include "prototype/header.html" %}
+{% endblock header %}
+
+{% load d3 %}
+
+{% block main %}
+
+    <form action="../search/" method="GET" id="searchform1">
+        <p>You can search for key words in tweets using box below. <br>
+        <input type="search" name="q" value="{{ query|escape }}" results="10">
+        <input type="submit" value="Search"></p><br />
+        Examples:
+        '<a href="../search/?q=vogue">vogue</a>', '<a href="../search/?q=shoes">shoes</a>',
+        '<a href="../search/?q=%23pfw">#PFW</a>' (paris fashion week), '<a href="../search/?q=%23NYFW">#NYFW</a>' (new york fashion week)<br>
+
+         {% if query %}<br /><br />
+            <h2>Results for "{{ query|escape }}":</h2><br />
+            {% if results %}
+              <ul>
+              {% for tweet in results %}
+                <li>{{ tweet|escape }}</l1>
+              {% endfor %}
+              </ul>
+            {% else %}
+              <p>No questions found</p>
+            {% endif %}
+          {% endif %}
+    </form>
+
+    {% if userlist %}
+    <p style="border-bottom:1px solid #ddd">&nbsp;
+        Recent tweets from <a href="http://www.refinery29.com/best-fashion-twitters">
+        this list (#)</a>...</p>
+        <ul>
+        {% for p in userlist %}
+            <li>{{ p.timestamp }} //  <b>{{ p.user }}</b>: {{ p.tweet }} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div id="tweetblock">
+        <h2 style="font-size:1.8em;line-height:2em">Latest Tweets <em>#Fashion</em></h2>
+        <ul id="tweets"> </ul>
+    </div>
+
+{% endblock main %}
+
+{% block content %}
+    {% block example_nav %}
+        <div id="examples_nav" class="pIndex">
+                <ul>
+                    <li>Chart Examples:</li>
+                    <li><a href="{% url random-series %}">Time Series</a></li>
+                    <li><a href="{% url bar-chart %}">Bar</a></li>
+                    {# <li><a href="{% url line-chart %}">Line</a></li> #}
+                <li><a href="{% url pie-chart %}">Pie</a></li>
+            </ul>
+          </div>
+    {% endblock example_nav %}
+
+        <!-- Example Chart --><br>
+        {% with series=data.series %}
+            <div id="main">
+                <!-- Data Series -->
+                {# {% d3_series_chart data=series %} #}
+                {% d3_series_chart data=series options="{'width':50,'height':100}" %}
+            </div>
+        {% endwith %}
+
+    <br />
+
+    {% block example_chart %}
+  {% endblock %}
+
+    <div id="main">
+        {# {% include 'd3/_d3_area_chart.html' %} #}
+        {# {% include 'd3/_d3_column_chart.html' %} #}
+        {# {% include 'd3/_d3_stack_chart.html' %} #}
+        {# {% d3_test_chart '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0' %} #}
+        {# {% d3_test_chart '0.1,0.2,0.3,0.4,0.5' %} #}
+        {# {% d3_test_chart '0.1,0.2' %} #}
+    </div>
+
+
+    {% endblock content %}
+
+
+    {% block footer %}
+     {% include "prototype/footer.html" %}
+    {% endblock footer %}

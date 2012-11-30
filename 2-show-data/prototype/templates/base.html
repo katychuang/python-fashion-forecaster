@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <!-- DEFAULT COLORS -->
+        <meta name="color:Background" content="#ffffff"/>
+    	<meta name="color:Text" content="#919191"/>
+		<meta name="color:Links" content="#FB7872"/>
+		<meta name="color:Links Hover" content="#4A8D75"/>
+		<meta name="color:Heading" content="#000"/>
+		<meta name="color:Heading Hover" content="#000"/>
+		<meta name="color:Description" content="#919191"/>
+		<meta name="color:Permalink" content="#3F3F3F"/>
+		<meta name="color:Permalink Hover" content="#000000"/>
+		<meta name="color:Text Alt" content="#919191"/>
+        <meta name="viewport"  content="width=660"/>
+
+	{% block css %}
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400|Dosis|News+Cycle|Josefin+Sans|Advent+Pro|Lobster|Muli' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://katychuang.pythonanywhere.com/static/global.css" />
+	{% endblock css %}
+        <style>
+
+        	body { background: {color:Background}; font-family: 'Muli', sans-serif; color: {color:Text}; }
+
+            #footer .attribution a, #footer .attribution a:link, #footer .attribution a:visited,
+
+            #header a, #header #description a:link, #header #description a:visited, a { color: {color:Links}; }
+            a {color:#FB7872; text-decoration: none; }
+			a:hover { color: {color:Links Hover}; }
+			#header h1 a { color: {color:Heading}; font-family: 'Lobster', cursive;}
+			#header h1 a:hover { color: {color:Heading Hover}; }
+
+			#description { color: {color:Description}; border-bottom: 1px solid #cccccc;
+            padding:5px; background-image: -webkit-linear-gradient(top, white, #F7F7F7 87%, #E2E2E2);
+            }
+
+            #content {font-size:10pt;}
+
+            .customUL {list-style-type:disc;}
+
+			.permalink a { color: {color:Permalink}; }
+			.permalink a:hover { color: {color:Permalink Hover}; }
+
+			#footer, .quote p, .photo p, .video p, .audio p, #content .conversation, .text blockquote { color: {color:Text Alt}; }
+
+            svg {margin-left:60px; }
+
+            #tweetblock {border-bottom:1px solid #ccc;border-top:1px solid #ccc; margin:1em 0 1em 0; padding:1em 0 1em 0;}
+    </style>
+
+    {% include "d3/_d3_deps.html" %}
+
+	</head>
+
+<body>
+    <a href="https://github.com/katychuang">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+    {% block header %}
+    <div id="header">
+    </div>
+    {% endblock header %}
+
+    <div id="main">
+
+        {% block main %}
+         <div id="content">
+         </div>
+        {% endblock main %}
+
+        {% block content-wrap %}
+         <div id="content">
+         </div>
+        {% endblock content-wrap %}
+
+        <div id="chart">
+        {% block content %}
+        {% endblock content %}
+        </div><!--end div #char -->
+
+    </div> <!-- end #main -->
+
+    {% block footer %}
+    <!-- footer -->
+    {% endblock footer %}
+
+
+
+    {% block javascript %}
+        <script src="{{ STATIC_URL}}fonts.js"></script>
+        <script src="http://katychuang.pythonanywhere.com/static/twitterstream.js"></script>
+    {% endblock javascript %}
+
+</body>
+</html>

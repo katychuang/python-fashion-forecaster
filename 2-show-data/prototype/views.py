@@ -41,12 +41,7 @@ def get_query(query_string, search_fields):
         else:
             query = query & or_query
     return query
-
-
-# Create your views here.
-def home(request):
-    return render_to_response('prototype/index.html')
-
+    
 def search(request):
     query_string = ''
     found_entries = None
@@ -58,4 +53,33 @@ def search(request):
     return render_to_response('prototype/index.html',
                           { 'query': query_string, 'results': found_entries },
                           context_instance=RequestContext(request))
+
+# Create your views here.
+def home(request):
+    dt = datetime.timedelta(days=1)
+    today = datetime.date.today()
+    series = [i*0.1 for i in range(10)]
+    timeSeries = map(str, [today - i*dt for i in reversed(range(10))])
+    rand = [random.random() for i in range(10)]
+    sqrt = [math.sqrt(i*0.1) for i in range(10)]
+    data = {'x': series, 'y': rand}
+    timeSeriesData = {'x': timeSeries, 'y': rand}
+
+    allmsgs = list(Tweets.objects.all())
+    import numpy
+    import nltk
+    from collections import defaultdict
+    wordFreqs = defaultdict(lambda: 0)
+
+    #for item in allmsgs:
+    #    tokens = nltk.word_tokenize(item)
+    #    for word in tokens:
+    #        wordFreqs[word] += 1
+
+    return render_to_response('prototype/index.html', {'series': sqrt, 'topwords': [],
+                                },context_instance=RequestContext(request))
+    #return render_to_response('prototype/index.html')
+
+def thankyou(request):
+    return render_to_response('prototype/thankyou.html')
 
