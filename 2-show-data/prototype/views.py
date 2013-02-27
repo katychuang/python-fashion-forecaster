@@ -1,12 +1,15 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from prototype.models import Users, Tweets 
+from wpe.prototype.models import Users, Tweets, ContactForm 
 from django.template import RequestContext, Context
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django import forms 
+from django import forms  
 
-import re
+import re, math, datetime, random
+from string import punctuation
+from operator import itemgetter
+
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
@@ -41,18 +44,7 @@ def get_query(query_string, search_fields):
         else:
             query = query & or_query
     return query
-    
-def search(request):
-    query_string = ''
-    found_entries = None
-    if ('q' in request.GET) and request.GET['q'].strip():
-        query_string = request.GET['q']
-        entry_query = get_query(query_string, ['tweet', 'user'])
-        found_entries = Tweets.objects.filter(entry_query).order_by('-timestamp')
 
-    return render_to_response('prototype/index.html',
-                          { 'query': query_string, 'results': found_entries },
-                          context_instance=RequestContext(request))
 
 # Create your views here.
 def home(request):
@@ -66,20 +58,31 @@ def home(request):
     timeSeriesData = {'x': timeSeries, 'y': rand}
 
     allmsgs = list(Tweets.objects.all())
-    import numpy
-    import nltk
-    from collections import defaultdict
-    wordFreqs = defaultdict(lambda: 0)
 
-    #for item in allmsgs:
-    #    tokens = nltk.word_tokenize(item)
-    #    for word in tokens:
-    #        wordFreqs[word] += 1
+    from utils import print_date
+    now = print_date();
 
     return render_to_response('prototype/index.html', {'series': sqrt, 'topwords': [],
+                            'date': now,
                                 },context_instance=RequestContext(request))
-    #return render_to_response('prototype/index.html')
 
-def thankyou(request):
-    return render_to_response('prototype/thankyou.html')
+def search(request):
+    query_string = ''
+    found_entries =  None
 
+    #Search Queries
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        entry_query = get_query(query_string, ['tweet', 'user'])
+        found_entries = Tweets.objects.filter(entry_query).order_by('-timestamp')
+
+    return render_to_response('prototype/search.html',
+                          { 'query': query_string, 'results': found_entries},
+                          context_instance=RequestContext(request))
+def newsfeed(request):
+    import datetime
+    now = datetime.datetime.now()
+    now = now.strftime("%A, %b %d, %Y")
+    return render_to_response('prototype/newsfeed.html',
+                          { 'date': now },
+                          context_instance=RequestContext(request))
