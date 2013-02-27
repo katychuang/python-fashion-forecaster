@@ -1,16 +1,23 @@
-    {% block footer %}
-        <div id="footer">
-    		<!--form action="{{ STATIC_URL }}/search" method="get" id="searchform">
-    		    <p><input type="search" name="q" value="" results="5" /></p>
-			</form-->
+{% block footer %}
 
-			<div class="attribution">
-            &copy; 2012 <a href="http://www.katychuang.com">KAT CHUANG</a><br>
-            Built with Django; theme inspired by
-            <a href="http://www.tumblr.com/theme/3357" title="tumblr theme feather">feather</a><br>
-            </div>
-		</div>
+<footer id="footer">
+    <div class="wrapper">
+        <section class="left"><h4></h4></section>
 
+
+
+<!-- DON'T TOUCH THIS SECTION END -->
+
+        <section class="right social"> <!-- Social Icons Start -->
+        <a href="https://plus.google.com/108870060325793264627">
+            <img class="icon" src="http://katychuang.pythonanywhere.com/static/icons/google.png" width="32" height="32" alt="google"></a><!-- Replace with any 32px x 32px icons -->
+        <a href="http://www.twitter.com/katychuang">
+            <img class="icon" src="http://katychuang.pythonanywhere.com/static/icons/twitter.png" width="32" height="32" alt="twitter"></a><!-- Replace with any 32px x 32px icons -->
+        </section> <!-- Social Icons End -->
+
+        </section> <!-- Social Icons End -->
+    </div>
+    <div class="clearfix"></div>
+</footer>
     {% endblock footer %}
-
 

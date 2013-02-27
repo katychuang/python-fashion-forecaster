@@ -8,90 +8,153 @@
     {% include "prototype/header.html" %}
 {% endblock header %}
 
-{% load d3 %}
 
 {% block main %}
+    <!--header>    <!-- Header Title Start --
+        <h1>Hello there, I'm <span>&quot;Kat&quot;</span>, gradually building this prototype of a fashion forecaster app in my free time. Thanks for checking it out!</h1>
+        <h2>&ndash; Fashionista + Data Nerd &ndash;</h2>
+    </header>   <!-- Header Title End -->
 
-    <form action="../search/" method="GET" id="searchform1">
-        <p>You can search for key words in tweets using box below. <br>
-        <input type="search" name="q" value="{{ query|escape }}" results="10">
-        <input type="submit" value="Search"></p><br />
-        Examples:
-        '<a href="../search/?q=vogue">vogue</a>', '<a href="../search/?q=shoes">shoes</a>',
-        '<a href="../search/?q=%23pfw">#PFW</a>' (paris fashion week), '<a href="../search/?q=%23NYFW">#NYFW</a>' (new york fashion week)<br>
+    <section id="slideshow">    <!-- Slideshow Start -->
+        <div class="html_carousel">
+            <div id="slider">
 
-         {% if query %}<br /><br />
-            <h2>Results for "{{ query|escape }}":</h2><br />
-            {% if results %}
-              <ul>
-              {% for tweet in results %}
-                <li>{{ tweet|escape }}</l1>
-              {% endfor %}
-              </ul>
-            {% else %}
-              <p>No questions found</p>
-            {% endif %}
-          {% endif %}
-    </form>
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/slide1.jpg" width="3000" height="983" alt="image 1"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
 
-    {% if userlist %}
-    <p style="border-bottom:1px solid #ddd">&nbsp;
-        Recent tweets from <a href="http://www.refinery29.com/best-fashion-twitters">
-        this list (#)</a>...</p>
-        <ul>
-        {% for p in userlist %}
-            <li>{{ p.timestamp }} //  <b>{{ p.user }}</b>: {{ p.tweet }} </li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/slide2.jpg" width="3000" height="983" alt="image 2"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
 
-    <div id="tweetblock">
-        <h2 style="font-size:1.8em;line-height:2em">Latest Tweets <em>#Fashion</em></h2>
-        <ul id="tweets"> </ul>
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/2012_Pantone_Fashion_Color_Report_Spring_03.jpg" width="3000" height="983" alt="image 3"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
+
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/slide3.jpg" width="3000" height="983" alt="image 4"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
+            </div><!--/slider-->
+            <div class="clearfix"></div>
+        </div><!--/html_carousel-->
+        <script src="http://katychuang.pythonanywhere.com/static/jquery.carouFredSel-5.5.2.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $("#slider").carouFredSel({
+            responsive  : true,
+            scroll      : {
+                fx          : "crossfade",
+                easing      : "swing",
+                duration    : 1000,
+
+            },
+            items       : {
+                visible     : 1,
+                height      : "40%"
+            }
+        });
+        </script>
+
+    </section>  <!-- Slideshow End -->
+<br>
+    <aside id="about" class=" left"> <!-- Text Section Start -->
+        <h3>About Python Fashion Forecaster</h3><!-- Replace all text with what you want -->
+        <p>
+         I created this app to gather social api data from the Internet about fashion into a
+         central location, in order to find trends from a computational approach.
+         It is still in beta.<br /><br />
+         </p>
+
+         <h3>Ingredients</h3>
+         <p>
+         This app is made with several open source software: Django Web framework for
+         Python, MySQL database, and for visualizations: D3.js and Flotr2.js.
+            <br /><br /><br />
+
+        <center>
+        <a href="https://plus.google.com/108870060325793264627">
+            <img src="http://katychuang.pythonanywhere.com/static/icons/google.png" width="32" height="32" alt="google"></a>
+        <a href="http://www.twitter.com/katychuang">
+            <img src="http://katychuang.pythonanywhere.com/static/icons/twitter.png" width="32" height="32" alt="twitter"></a>
+        </center>
+        </p>
+    </aside>
+    <aside class="right">
+        <h3>&nbsp;</h3><center>
+        <p><img src="http://katychuang.pythonanywhere.com/static/PythonFashionForecaster.png" width="300">
+
+<br /><br />
+        </p></center>
+    </aside>
+    <div class="clearfix"></div> <!-- Text Section End -->
+
+    <section id="work"> <!-- Work Links Section Start -->
+        <div class="item">
+            <a href="http://katychuang.pythonanywhere.com/examples/time-series/"><img src="http://katychuang.pythonanywhere.com/static/thumbs/events.png" alt="image 1"></a><!-- Image must be 400px by 300px -->
+            <h3>Event Analysis</h3><!--Title-->
+            <p>Times Series Chart</p><!--Category-->
+        </div><!--/item-->
+
+        <div class="item">
+            <a href="http://katychuang.pythonanywhere.com/examples/bar/"><img src="http://katychuang.pythonanywhere.com/static/thumbs/keywords.jpg" alt="image 2"></a><!-- Image must be 400px by 300px -->
+            <h3>Keyword Analysis</h3><!--Title-->
+            <p>Bar Chart</p><!--Category-->
+        </div><!--/item-->
+
+        <div class="item">
+            <a href="http://katychuang.pythonanywhere.com/examples/pie/"><img src="http://katychuang.pythonanywhere.com/static/thumbs/brands.jpg" alt="image 3"></a><!-- Image must be 400px by 300px -->
+            <h3>Brand Analysis</h3><!--Title-->
+            <p>Pie Chart</p><!--Category-->
+        </div><!--/item-->
+
+        <div class="item">
+            <a href="http://katychuang.pythonanywhere.com/search"><img src="http://katychuang.pythonanywhere.com/static/thumbs/search.jpg" alt="image 2"></a><!-- Image must be 400px by 300px -->
+            <h3>Search</h3><!--Title-->
+            <p>keywords</p><!--Category-->
+        </div><!--/item-->
+
+        <div class="item">
+            <a href="http://katychuang.pythonanywhere.com/newsfeed"><img src="http://katychuang.pythonanywhere.com/static/thumbs/socialapi.jpg" alt="image 3"></a><!-- Image must be 400px by 300px -->
+            <h3>Newsfeed</h3><!--Title-->
+            <p>Social API</p><!--Category-->
+        </div><!--/item-->
+
+        <div class="clearfix"></div>
+    </section> <!-- Work Links Section End -->
+<br/><br/><br/><br/>
+
+            {% block chart %}
+
+            {% endblock %}
     </div>
-
+    <!-- end #main -->
 {% endblock main %}
 
 {% block content %}
-    {% block example_nav %}
-        <div id="examples_nav" class="pIndex">
-                <ul>
-                    <li>Chart Examples:</li>
-                    <li><a href="{% url random-series %}">Time Series</a></li>
-                    <li><a href="{% url bar-chart %}">Bar</a></li>
-                    {# <li><a href="{% url line-chart %}">Line</a></li> #}
-                <li><a href="{% url pie-chart %}">Pie</a></li>
-            </ul>
-          </div>
-    {% endblock example_nav %}
 
-        <!-- Example Chart --><br>
-        {% with series=data.series %}
-            <div id="main">
-                <!-- Data Series -->
-                {# {% d3_series_chart data=series %} #}
-                {% d3_series_chart data=series options="{'width':50,'height':100}" %}
-            </div>
-        {% endwith %}
+{% endblock content %}
 
-    <br />
+<!-- SLIDESHOW SCRIPT START -->
+        <script type="text/javascript">
+        $("#slider").carouFredSel({
+            responsive    : true,
+            scroll      : {
+                fx          : "crossfade",
+                easing      : "swing",
+                duration    : 1000,
 
-    {% block example_chart %}
-  {% endblock %}
+            },
+            items       : {
+                visible     : 1,
+                height      : "27%"
+            }
+        });
+        </script>
+        <!-- SLIDESHOW SCRIPT END -->
 
-    <div id="main">
-        {# {% include 'd3/_d3_area_chart.html' %} #}
-        {# {% include 'd3/_d3_column_chart.html' %} #}
-        {# {% include 'd3/_d3_stack_chart.html' %} #}
-        {# {% d3_test_chart '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0' %} #}
-        {# {% d3_test_chart '0.1,0.2,0.3,0.4,0.5' %} #}
-        {# {% d3_test_chart '0.1,0.2' %} #}
-    </div>
-
-
-    {% endblock content %}
-
-
-    {% block footer %}
-     {% include "prototype/footer.html" %}
-    {% endblock footer %}
+{% block footer %}
+    {% include "prototype/footer.html" %}
+{% endblock footer %}
