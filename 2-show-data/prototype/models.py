@@ -17,7 +17,7 @@ class Users(models.Model):
 
 class Tweets(models.Model):
     user = models.CharField(max_length=80)
-    tweet = models.CharField(max_length=140)
+    tweet = models.CharField(max_length=160) #Tweets have 160 char to allow room for user/screennames
     timestamp = models.DateTimeField('date published')
 
     def __unicode__(self):
