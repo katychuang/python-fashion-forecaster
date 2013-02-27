@@ -46,31 +46,31 @@
     <section id="work"> <!-- Work Links Section Start -->
         <div class="item" style="background:#ccc;">
             <a href="http://katychuang.pythonanywhere.com/examples/time-series/">
-            <img src="http://katychuang.pythonanywhere.com/static/thumbs/events.png" alt="image 1"></a><!-- Image must be 400px by 300px -->
+            <img src="{{ STATIC_URL }}thumbs/events.png" alt="image 1"></a><!-- Image must be 400px by 300px -->
             <h3>Event Analysis</h3><!--Title-->
             <p>Times Series Chart</p><!--Category-->
         </div><!--/item-->
 
         <div class="item" style="background:#ccc;">
-            <a href="http://katychuang.pythonanywhere.com/examples/bar/"><img src="http://katychuang.pythonanywhere.com/static/thumbs/keywords.jpg" alt="image 2"></a><!-- Image must be 400px by 300px -->
+            <a href="http://katychuang.pythonanywhere.com/examples/bar/"><img src="{{ STATIC_URL }}thumbs/keywords.jpg" alt="image 2"></a><!-- Image must be 400px by 300px -->
         	<h3>Keyword Analysis</h3><!--Title-->
             <p>Bar Chart</p><!--Category-->
         </div><!--/item-->
 
         <div class="item" style="background:#ccc;">
-        	<a href="http://katychuang.pythonanywhere.com/examples/pie/"><img src="http://katychuang.pythonanywhere.com/static/thumbs/brands.jpg" alt="image 3"></a><!-- Image must be 400px by 300px -->
+        	<a href="http://katychuang.pythonanywhere.com/examples/pie/"><img src="{{ STATIC_URL }}thumbs/brands.jpg" alt="image 3"></a><!-- Image must be 400px by 300px -->
         	<h3>Brand Analysis</h3><!--Title-->
             <p>Pie Chart</p><!--Category-->
         </div><!--/item-->
 
         <div class="item" style="background:#ccc;">
-            <a href="http://katychuang.pythonanywhere.com/search"><img src="http://katychuang.pythonanywhere.com/static/thumbs/search.jpg" alt="image 2"></a><!-- Image must be 400px by 300px -->
+            <a href="http://katychuang.pythonanywhere.com/search"><img src="{{ STATIC_URL }}thumbs/search.jpg" alt="image 2"></a><!-- Image must be 400px by 300px -->
         	<h3>Search</h3><!--Title-->
             <p>keywords</p><!--Category-->
         </div><!--/item-->
 
         <div class="item">
-        	<a href="http://katychuang.pythonanywhere.com/newsfeed"><img src="http://katychuang.pythonanywhere.com/static/thumbs/socialapi.jpg" alt="image 3"></a><!-- Image must be 400px by 300px -->
+        	<a href="http://katychuang.pythonanywhere.com/newsfeed"><img src="{{ STATIC_URL }}thumbs/socialapi.jpg" alt="image 3"></a><!-- Image must be 400px by 300px -->
         	<h3>Newsfeed</h3><!--Title-->
             <p>Social API</p><!--Category-->
         </div><!--/item-->
@@ -100,8 +100,8 @@
 
     <div class="clearfix"></div> <!-- Text Section End -->
 
-    <script src="http://katychuang.pythonanywhere.com/static/twitterstream.js"></script>
-    <script src="http://katychuang.pythonanywhere.com/static/shopsensestream.js"></script>
+    <script src="{{ STATIC_URL }}twitterstream.js"></script>
+    <script src="{{ STATIC_URL }}shopsensestream.js"></script>
 
 {% endblock main %}
 
