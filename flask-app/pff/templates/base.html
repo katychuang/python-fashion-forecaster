@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+        
+        
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>{% block title %}Style Buzz{% endblock %}</title>
+	<meta name="description" content="">
+	<meta name="author" content="Katherine Y. Chuang">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="static/base.css">
+	<link rel="stylesheet" href="static/skeleton.css">
+	<link rel="stylesheet" href="static/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+
+
+
+ <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400|Dosis|News+Cycle|Josefin+Sans|Advent+Pro|Lobster|Muli|Lato:300,400,700|Cookie' rel='stylesheet' type='text/css'>
+    <!--link rel="stylesheet" href="http://katychuang.pythonanywhere.com/static/global.css" /-->
+
+    <link rel="stylesheet" type="text/css" href="http://katychuang.pythonanywhere.com/static/style.css">
+
+    <style>
+    #tweetblock {border-bottom:1px solid #ccc;border-top:1px solid #ccc; margin:1em 0 1em 0; padding:1em 0 1em 0;}
+    </style>
+
+    
+    <style>
+    .flotr-datagrid-container{border:1px solid #999;border-bottom:none;background:#fff}
+    .flotr-datagrid{border-collapse:collapse;border-spacing:0}
+    .flotr-datagrid td,.flotr-datagrid th{border:1px solid #ccc;padding:1px 3px;min-width:2em}
+    .flotr-datagrid tr:hover,.flotr-datagrid col.hover{background:#f3f3f3}
+    .flotr-datagrid tr:hover th,.flotr-datagrid th.hover{background:#999;color:#fff}
+    .flotr-datagrid th{text-align:left;background:#e3e3e3;border:2px outset #fff}
+    .flotr-datagrid-toolbar{padding:1px;border-bottom:1px solid #ccc;background:#f9f9f9}
+    .flotr-datagrid td:hover{background:#ccc}.flotr-datagrid .first-row th{text-align:center}
+    .flotr-canvas{margin-bottom:-3px;padding-bottom:1px}.flotr-tabs-group{border-top:1px solid #999}
+    .flotr-tab{border:1px solid #666;border-top:none;margin:0 3px;padding:1px 4px;
+        cursor:pointer;-moz-border-radius:0 0 4px 4px;-webkit-border-bottom-left-radius:4px;
+        -webkit-border-bottom-right-radius:4px;border-radius:0 0 4px 4px;opacity:.5;-moz-opacity:.5}
+    .flotr-tab.selected{background:#ddd;opacity:1;-moz-opacity:1}
+    .flotr-tab:hover{background:#ccc}
+    </style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="http://katychuang.pythonanywhere.com/static/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="http://katychuang.pythonanywhere.com/static/jquery.form.js"></script>
+    <script type="text/javascript" src="http://katychuang.pythonanywhere.com/static/scripts.js"></script>
+
+    <script type="text/javascript" src="http://katychuang.pythonanywhere.com/d3/static/js/d3.js"></script>
+    <script type="text/javascript" src="http://katychuang.pythonanywhere.com/d3/static/js/d3.layout.js"></script>
+
+	</head>
+<body>
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<div class="container">
+
+		
+        {% include "includes/header.html" %}
+
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">
+                     {% for message in messages %}
+                        <p>{{ message }}</p>
+                     {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block twitter %}        {% endblock %}
+
+		<hr>
+        
+        {% block content %}        {% endblock %}
+        
+        <hr>
+        
+        <p>Admin Actions: 
+            <a href="{{ url_for('list_posts') }}">View all updates</a> | <a href="{{ url_for('new_post') }}">New</a>
+        </p>
+
+        <span id="credits">
+		 	{% block credits %}{% endblock %}
+    	</span>
+	<!-- JS
+	================================================== -->
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Poiret+One::latin','Quattrocento+Sans::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); 
+  
+	
+	</script>	
+	
+	
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

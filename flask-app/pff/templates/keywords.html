@@ -1,0 +1,120 @@
+{% extends 'base.html' %} 
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+{% block example_chart %}
+    {% include "includes/appMenu.html" %}
+    
+    <p>&nbsp;</p>
+
+    <div class="clearfix"></div> <!-- Text Section End -->
+
+    <header>
+        <h1><span>Keyword Analysis</span></span></h1>
+    </header>
+
+
+	<h3>Bar Chart</h3>
+    <div id="test" style="height:500px;overflow:auto;"></div>
+
+
+<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://raw.github.com/HumbleSoftware/Flotr2/master/flotr2.js"></script>
+
+<script>
+    var d = [];
+    var la = [];
+    var point;
+
+    $.ajax({
+      dataType: 'json',
+      processData: false,
+      url: "http://api.shopstyle.com/action/apiGetCategoryHistogram?pid=uid3649-8767593-82&format=json",
+      success: function(data, textStats, xhr) {
+          var count = 0;
+        $(data.categories).each(function(i,val){
+            //$('#test').append("<p>"+val.parentId+" ("+val.name+") : " + val.count +"</p>");
+            if (val.count > 90000){
+                point = [count,val.count];
+                la.push([val.id]);
+                d.push(point);
+                count ++;
+                //console.log(count + "  " + val.id + "(" + val.count + ")");
+            }
+        });
+      },
+      complete: function(xhr, tStat) {
+          console.log("complete");
+
+        (function (container) {
+            var
+                markers = {
+                  data: d,
+                  markers: {
+                    show: true,
+                    position: 'ct'
+                  }
+                }, lines = {
+                  data: d,
+                  lines: {
+                    show: true,
+                    fillColor: ['#ccc', '#ccc'],
+                    fill: false,
+                    fillOpacity: 1
+                  }
+                };
+
+            var v = d.length;
+            console.log("count=" + v);
+
+            //console.log(bars.data);
+
+            // Draw the graph
+            graph = Flotr.draw(
+                container, [lines, markers],
+                {
+                yaxis: {
+                    min:  90000,
+                    max: 1000000
+                  },
+                  xaxis: {
+                    /*min: 0,
+                    max: v,*/
+                    noTicks: v,
+                    tickFormatter : function (o) {
+                        console.log(o + " " + la[Math.round(o)]);
+                        return la[Math.round(o)];
+                        }
+                  },
+                  grid: {
+                    verticalLines: false,
+                    backgroundColor: ['#fff', '#fff']
+                  }
+            });
+        })(document.getElementById("test"));
+
+        console.log("Complete.");
+      }
+    });
+
+
+</script>
+
+{% endblock %}
+{% endblock %}
+
+{% block footer %}
+    {% include "prototype/footer.html" %}
+{% endblock %}
+
+
+
+<!--
+http://api.shopstyle.com/action/apiGetBrands?pid=uid3649-8767593-82&format=json
+
+-->

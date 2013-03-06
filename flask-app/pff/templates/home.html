@@ -1,0 +1,98 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <section id="slideshow">    <!-- Slideshow Start -->
+        <div class="html_carousel">
+            <div id="slider">
+
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/slide1.jpg" width="3000" height="983" alt="image 1"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
+
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/slide2.jpg" width="3000" height="983" alt="image 2"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
+
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/2012_Pantone_Fashion_Color_Report_Spring_03.jpg" width="3000" height="983" alt="image 3"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
+
+                <div class="slide">
+                    <img src="http://katychuang.pythonanywhere.com/static/slideshow/slide3.jpg" width="3000" height="983" alt="image 4"/>
+                    <!-- Replace these images with your own but make sure they are 3000px wide and 783px high or the same ration -->
+                </div><!--/slide-->
+            </div><!--/slider-->
+            <div class="clearfix"></div>
+        </div><!--/html_carousel-->
+        <script src="http://katychuang.pythonanywhere.com/static/jquery.carouFredSel-5.5.2.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $("#slider").carouFredSel({
+            responsive  : true,
+            scroll      : {
+                fx          : "crossfade",
+                easing      : "swing",
+                duration    : 1000,
+
+            },
+            items       : {
+                visible     : 1,
+                height      : "40%"
+            }
+        });
+        </script>
+
+    </section>  <!-- Slideshow End -->
+<br>
+    <aside id="about" class=" left"> <!-- Text Section Start -->
+        <h3>About Python Fashion Forecaster</h3><!-- Replace all text with what you want -->
+        <p>
+         I created this app to gather social api data from the Internet about fashion into a
+         central location, in order to find trends from a computational approach.
+         It is still in pre-alpha. Code is available on <a href="https://github.com/katychuang/Python-Fashion-Forecaster">GitHub</a>.
+        <br /><br />
+         This project was inspired by a book I read about the sociology of fashion. The author argues
+         that fashion is a symbolic cultural product, dimensionally different from discussions on the articles of clothing.
+         In the great words of Yuniya Kawamura, "fashion is not about clothes but is a belief". In her book, she
+         clarifies the difference between a "fashion system" and a "clothing system", where fashion has intangible value
+         yet propagated by cultural infrastructures promoting the activities of perceiving clothing as art.<br /><br />
+         <font size="2">
+         <b>Reference</b><br />
+            Kawamura, Yuniya. 2005. <a href="http://www.goodreads.com/book/show/464271.Fashion_ology">Fashion-ology</a>. Oxford: Berg. </font>
+        </p>
+        <p>&nbsp;</p>
+         <h3>Ingredients</h3>
+         <p>
+         This app is made with several open source software: Django Web framework for
+         Python, MySQL database to save tweets, and several javascript libraries for visualizations (D3.js and Flotr2.js).
+            <br /><br /><br />
+
+        <center>
+        <a href="https://plus.google.com/108870060325793264627">
+            <img src="http://katychuang.pythonanywhere.com/static/icons/google.png" width="32" height="32" alt="google"></a>
+        <a href="http://www.twitter.com/katychuang">
+            <img src="http://katychuang.pythonanywhere.com/static/icons/twitter.png" width="32" height="32" alt="twitter"></a>
+        </center>
+        </p>
+    </aside>
+    <aside class="right">
+        <center><h3>Data Flow Diagram</h3>
+        <p><img src="http://katychuang.pythonanywhere.com/static/PythonFashionForecaster.png" width="300">
+
+<br /><br />
+        </p></center>
+    </aside>
+    <div class="clearfix"></div> <!-- Text Section End -->
+
+
+
+    
+<br/><br/><br/><br/>
+
+
+    </div>
+    <!-- end #main -->
+
+{% endblock %}

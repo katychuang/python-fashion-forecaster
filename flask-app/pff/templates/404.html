@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+        
+        
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>{% block title %}Style Buzz{% endblock %}</title>
+	<meta name="description" content="">
+	<meta name="author" content="Katherine Y. Chuang">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="static/base.css">
+	<link rel="stylesheet" href="static/skeleton.css">
+	<link rel="stylesheet" href="static/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+
+</head>
+<body>
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<div class="container">
+
+		<div class="sixteen columns">
+
+		</div>
+		<hr>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">
+                     {% for message in messages %}
+                        <p>{{ message }}</p>
+                     {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block twitter %}        {% endblock %}
+		
+		<hr>
+        
+        {% block content %}        {% endblock %}
+        
+        <hr>
+        
+        <p>Admin Actions: 
+            <a href="{{ url_for('list_posts') }}">View all updates</a> | <a href="{{ url_for('new_post') }}">New</a>
+        </p>
+
+        <span id="credits">
+		 	{% block credits %}{% endblock %}
+    	</span>
+	<!-- JS
+	================================================== -->
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Poiret+One::latin','Quattrocento+Sans::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); 
+  
+	
+	</script>	
+	
+	
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

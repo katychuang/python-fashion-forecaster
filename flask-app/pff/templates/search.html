@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    {% include "includes/appMenu.html" %}
+
+    <p>&nbsp;</p>
+    <div class="clearfix"></div> <!-- Text Section End -->
+    <header>
+        <h1> <span>Search</span> </h1>
+        <h2>{{ date }}</h2>
+    </header>
+
+
+    <form action="../search/" method="GET" id="searchform1">
+        <p>You can search for key words in tweets using box below. <br>
+        <input type="search" name="q" value="{{ query|escape }}" results="10">
+        <input type="submit" value="Search"></p><br />
+        Examples:
+        '<a href="../search/?q=vogue">vogue</a>', '<a href="../search/?q=shoes">shoes</a>',
+        '<a href="../search/?q=%23pfw">#PFW</a>' (paris fashion week), '<a href="../search/?q=%23NYFW">#NYFW</a>' (new york fashion week)<br>
+
+         {% if query %}<br /><br />
+            <h2>Results for "{{ query|escape }}":</h2><br />
+            {% if results %}
+              <ul>
+              {% for tweet in results %}
+                <li>{{ tweet|escape }}</l1>
+              {% endfor %}
+              </ul>
+            {% else %}
+              <p>No questions found</p>
+            {% endif %}
+          {% endif %}
+
+          <p style="min-height:400px">&nbsp;</p>
+    </form>
+
+    {% if slideset %}
+
+    {% endif %}
+
+    {% if userlist %}
+    <p style="border-bottom:1px solid #ddd">&nbsp;
+        Recent tweets from <a href="http://www.refinery29.com/best-fashion-twitters">
+        this list (#)</a>...</p>
+        <ul>
+        {% for p in userlist %}
+            <li>{{ p.timestamp }} //  <b>{{ p.user }}</b>: {{ p.tweet }} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
+
+
+
+{% block footer %}
+    {% include "prototype/footer.html" %}
+{% endblock footer %}

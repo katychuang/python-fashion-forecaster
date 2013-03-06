@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% block example_chart %}
+
+    {% include "includes/appMenu.html" %}
+
+    <p>&nbsp;</p>
+
+    <div class="clearfix"></div> <!-- Text Section End -->
+
+    <section id="slideshow">
+    <header>
+        <h1><span>Event Analysis</span></h1>
+    </header>
+    <p>Sample of chart that could show trends over time</p>
+
+    <!--div id="test" style="height:500px"></div-->
+    <br />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://katychuang.pythonanywhere.com/static/envision.js"></script>
+    </section>
+
+
+    <div id="histogram" class="chart">
+
+        <div class="clearfix"></div>
+        <p>summer: {{ summer }}</p>
+
+
+        <div class="clearfix"></div>
+        <p>winter: {{ winter }}</p>
+
+    </div>
+
+{% endblock %}
+{% endblock %}
+
+{% block footer %}
+    {% include "prototype/footer.html" %}
+{% endblock footer %}

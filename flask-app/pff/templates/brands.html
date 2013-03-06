@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="http://katychuang.pythonanywhere.com/static/stately/assets/css/stately.css">
+
+{% endblock css %}
+
+{% block content %}
+{% block example_chart %}
+    
+    {% include "includes/appMenu.html" %}
+
+    <p>&nbsp;</p>
+
+    <div class="clearfix"></div> <!-- Text Section End -->
+
+    <header>
+        <h1><span>Brand Analysis</span></span></h1>
+
+    </header>
+    <section>Sample of pie charts that could show popular brand names</section>
+
+    <div id="test" style="height:500px;"></div>
+    <br />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://katychuang.pythonanywhere.com/static/flotr2.js"></script>
+
+    <section id="geographic">
+    <h2>Comparing Geographic Regions (stately)</h2>
+    <div id="usa">
+        <ul class="stately">
+          <li data-state="al" id="al">A</li>
+          <li data-state="ak" id="ak">B</li>
+          <li data-state="ar" id="ar">C</li>
+          <li data-state="az" id="az">D</li>
+          <li data-state="ca" id="ca">E</li>
+          <li data-state="co" id="co">F</li>
+          <li data-state="ct" id="ct">G</li>
+          <li data-state="de" id="de">H</li>
+          <li data-state="dc" id="dc">I</li>
+          <li data-state="fl" id="fl">J</li>
+          <li data-state="ga" id="ga">K</li>
+          <li data-state="hi" id="hi">L</li>
+          <li data-state="id" id="id">M</li>
+          <li data-state="il" id="il">N</li>
+          <li data-state="in" id="in">O</li>
+          <li data-state="ia" id="ia">P</li>
+          <li data-state="ks" id="ks">Q</li>
+          <li data-state="ky" id="ky">R</li>
+          <li data-state="la" id="la">S</li>
+          <li data-state="me" id="me">T</li>
+          <li data-state="md" id="md">U</li>
+          <li data-state="ma" id="ma">V</li>
+          <li data-state="mi" id="mi">W</li>
+          <li data-state="mn" id="mn">X</li>
+          <li data-state="ms" id="ms">Y</li>
+          <li data-state="mo" id="mo">Z</li>
+          <li data-state="mt" id="mt">a</li>
+          <li data-state="ne" id="ne">b</li>
+          <li data-state="nv" id="nv">c</li>
+          <li data-state="nh" id="nh">d</li>
+          <li data-state="nj" id="nj">e</li>
+          <li data-state="nm" id="nm">f</li>
+          <li data-state="ny" id="ny">g</li>
+          <li data-state="nc" id="nc">h</li>
+          <li data-state="nd" id="nd">i</li>
+          <li data-state="oh" id="oh">j</li>
+          <li data-state="ok" id="ok">k</li>
+          <li data-state="or" id="or">l</li>
+          <li data-state="pa" id="pa">m</li>
+          <li data-state="ri" id="ri">n</li>
+          <li data-state="sc" id="sc">o</li>
+          <li data-state="sd" id="sd">p</li>
+          <li data-state="tn" id="tn">q</li>
+          <li data-state="tx" id="tx">r</li>
+          <li data-state="ut" id="ut">s</li>
+          <li data-state="va" id="va">t</li>
+          <li data-state="vt" id="vt">u</li>
+          <li data-state="wa" id="wa">v</li>
+          <li data-state="wv" id="wv">w</li>
+          <li data-state="wi" id="wi">x</li>
+          <li data-state="wy" id="wy">y</li>
+        </ul>
+    </div>
+
+    <script>
+    var d = [];
+    var la = [];
+    var charArray = {};
+
+   $.ajax({
+      dataType: 'json',
+      processData: false,
+      url: "http://api.shopstyle.com/action/apiGetBrands?pid=uid3649-8767593-82&format=json",
+      success: function(data, textStats, xhr) {
+        var count = 0,
+            f = 0,
+            //c = {};
+            a = 97;
+
+        for (var i = 0; i<26; i++)
+            charArray[String.fromCharCode(a + i)] = 0;
+
+        for (var i = 48; i<58; i++)
+            charArray[String.fromCharCode(i)] = 0;
+
+        charArray[String.fromCharCode(40)] = 0;
+        charArray[String.fromCharCode(43)] = 0;
+        charArray[String.fromCharCode(46)] = 0;
+        charArray["é"] = 0;
+
+        //console.log(charArray);
+
+        $(data.brands).each(function(i,val){
+                        //,"url":"http://www.shopstyle.com/browse/213-Industry?pid=uid3649-8767593-82"
+
+            //1st letter of val.name
+            var s = val.name.charAt(0).toLowerCase();
+            f = charArray[s];
+            f++;
+            charArray[s] = f;
+
+            //console.log(s + " (" + f + ")");
+
+        });
+      },
+      complete: function(xhr, tStat) {
+        (function basic_pie(container) {
+         var d1 = [[0, 1184]],
+             d2 = [[0, 23515]],
+             d3 = [[0, 13515]],
+             graph;
+
+          graph = Flotr.draw(container, [
+             { data: d3, label: 'brand name 1' },
+             { data: d3, label: 'brand name 2' },
+             { data: d2, label: 'brand name 3' },
+             { data: d1, label: 'brand name 4',
+                     pie: { explode: 10 }
+             }], {
+               HtmlText: false,
+               grid:  {
+                       verticalLines: false,
+                       horizontalLines: false
+                      },
+               xaxis: { showLabels: false },
+               yaxis: { showLabels: false },
+               pie:   {
+                        show: true,
+                        explode: 6
+                      },
+               mouse: { track: true },
+               legend:{
+                        position: 'ne',
+                        backgroundColor: '#FFFFFF'
+                      }
+               });
+        })(document.getElementById("test"));
+    }
+    });
+</script>
+    </section>
+
+
+
+<section id="brands_analysis">
+<div class="left">
+   
+</div>
+
+<div class="right">
+<h3>D3 pie chart</h3>
+    <div id="pie" class="chart">
+    
+    </div>
+</div>
+</section>
+
+<div class="clearfix"></div>
+
+
+{% endblock %}
+{% endblock %}
+
+{% block footer %}
+    {% include "prototype/footer.html" %}
+{% endblock footer %}

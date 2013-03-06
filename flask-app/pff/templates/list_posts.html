@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block twitter %}
+<h2 id="title">News from Twitter world about fashion:</h2> 
+{% for t in statuses %}
+	<p>{{ t.user.name }}</p>
+{% endfor %}
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+{% endblock %}
+
+
+{% block content %}
+<div style="background:#f7fdfc; margin-top:0;margin-bottom:0; padding:20px;">
+<ul>
+    <h2 id="title">Site Updates:</h2>
+    {% for post in posts %}
+    <li>
+        <em>{{ post.title }}</em> <!--(written by {{ post.author.nickname() }}) <br /> -->
+        {{ post.content }}
+    </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}
+
+{% block credits %}
+	<center>&copy; 2012 
+		<a href="http://www.twitter.com/katychuang">@katychuang</a> | 
+		Powered by Python/Flask on Google App Engine
+	</center>
+{% endblock %}
