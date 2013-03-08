@@ -1,0 +1,4 @@
+cron:
+- description: get some fashion tweets
+  url: /cron
+  schedule: every 1 minutes

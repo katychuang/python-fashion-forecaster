@@ -1,5 +1,5 @@
-from pff import app
-from models import Post
+from frame import app
+from models import Tweets
 from decorators import login_required
 
 from flask import render_template, flash, url_for, redirect
@@ -7,7 +7,9 @@ from flaskext import wtf
 from flaskext.wtf import validators
 
 from google.appengine.api import users
+from google.appengine.ext import db
 
+import nltk, datetime
 #import twitter
 
 class PostForm(wtf.Form):
@@ -58,7 +60,43 @@ def news():
 
 @app.route('/seasons')
 def seasons():
-    return render_template('seasons.html')
+
+    #import nltk
+    from nltk.tokenize import word_tokenize
+    from nltk.probability import FreqDist
+    from nltk.corpus import stopwords 
+
+    ## place tweets into morning and afternoon bins 
+    ru = db.GqlQuery("SELECT * FROM Tweets where iso!=:1", 'en').fetch(limit=None)
+    en = db.GqlQuery("SELECT * FROM Tweets where iso=:1", 'en').fetch(limit=None)
+    #Tweets.get('timestamp'<=time)
+    #botlist = db.GqlQuery('SELECT * FROM Weatherbot ORDER BY zipcode ASC')
+    #pm = Tweets.get('timestamp'>time)
+    am = pm = []
+    freq = FreqDist()
+    corpus = ""
+
+    freq1 = FreqDist()
+    freq2 = FreqDist()
+
+    for t in ru:
+        corpus = nltk.word_tokenize(t.tweet)
+        for a in corpus:
+            freq1.inc(a)
+
+    for t in en:
+        corpus = nltk.word_tokenize(t.tweet)
+        for a in corpus:
+            freq2.inc(a)
+
+    #display results
+    bins = freq1.B() #Returns: The total number of sample values (or bins) that have counts > 0
+    f1 = freq1.items()[:90] #Returns: List of all items in tuple format
+    f2 = freq2.items()[:90]
+
+    context = {'one': f1, 'two': f2}
+
+    return render_template('seasons.html', **context)
 
 @app.route('/keywords')
 def keywords():
@@ -71,3 +109,17 @@ def brands():
 @app.route('/search')
 def search():
     return render_template('search.html')
+
+@app.route('/cron')
+def cron():
+    #print "THE CRON PAGE IS RUNNING"
+    import cron 
+
+    context = {"abcdefghik": "cron job is up and running",
+               "left_title": "Status of Cron Jobs",
+               "right_title": "Data Captured",
+               "xyz": cron.savetweets("")#,
+              # "userxyz": cron.SpecificUser("")
+               } 
+
+    return render_template('index.html', **context)
