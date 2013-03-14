@@ -58,22 +58,22 @@ def page_not_found(e):
 def news():
     return render_template('newsfeed.html')
 
-@app.route('/seasons')
-def seasons():
+# Project: Python Fashion Forecaster
+# Author: @katychuang
+# Description: Takes data from GQL datastore based on 1 parameter and shows top words.
+# Demo at http://style-buzz.appspot.com
+@app.route('/topwords')
+def topwords():
 
-    #import nltk
+    import nltk
     from nltk.tokenize import word_tokenize
     from nltk.probability import FreqDist
     from nltk.corpus import stopwords 
 
-    ## place tweets into morning and afternoon bins 
+    ## place tweets into engligh and non english bins 
     ru = db.GqlQuery("SELECT * FROM Tweets where iso!=:1", 'en').fetch(limit=None)
     en = db.GqlQuery("SELECT * FROM Tweets where iso=:1", 'en').fetch(limit=None)
-    #Tweets.get('timestamp'<=time)
-    #botlist = db.GqlQuery('SELECT * FROM Weatherbot ORDER BY zipcode ASC')
-    #pm = Tweets.get('timestamp'>time)
-    am = pm = []
-    freq = FreqDist()
+
     corpus = ""
 
     freq1 = FreqDist()
@@ -96,7 +96,7 @@ def seasons():
 
     context = {'one': f1, 'two': f2}
 
-    return render_template('seasons.html', **context)
+    return render_template('topwords.html', **context)
 
 @app.route('/keywords')
 def keywords():
