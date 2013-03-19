@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+{% block example_chart %}
+  <div id="world-map" style="width: 600px; height: 400px;border:1px solid black"></div>
+
+<ul>
+{% for g in geolist %}
+  <li>{{ g.geo }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+{% endblock %}
+
+{% block footer %}
+
+{% endblock footer %}

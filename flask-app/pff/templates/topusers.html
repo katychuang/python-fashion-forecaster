@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    {{ block.super }}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://raw.github.com/HumbleSoftware/Flotr2/master/flotr2.js"></script>
+{% endblock %}
+
+
+{% block content %}
+{% block example_chart %}
+    {% include "includes/appMenu.html" %}
+
+    <p>&nbsp;</p>
+
+    <div class="clearfix"></div> <!-- Text Section End -->
+
+    <header>
+        <h1><span>Top Users On Twitter</span></span></h1>
+    </header>
+
+
+	<h3>Lists</h3>
+    <div>
+      <p>
+        List of Usernames collected:<br />
+        <ul>
+          {% for u in users %}
+            <li>{{ u.user }} ({{ u.timestamp }})</li>
+          {% endfor %}
+        </ul>
+      </p>
+      <p>
+
+      </p>
+    </div>
+    <div id="test" style="height:500px;overflow:auto;"></div>
+
+
+<br />
+
+
+
+</script>
+
+{% endblock %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+
+
+<!--
+http://api.shopstyle.com/action/apiGetBrands?pid=uid3649-8767593-82&format=json
+
+-->
