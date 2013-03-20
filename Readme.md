@@ -3,6 +3,7 @@ This app is still in pre-alpha. This project was inspired by a book I read about
 Reference: Kawamura, Yuniya. 2005. Fashion-ology. Oxford: Berg.
 
 Demo of Flask app on Google App Engine: http://style-buzz.appspot.com
+
 Demo of Django app on PythonAnywhere: http://katychuang.pythonanywhere.com
 
 ------
