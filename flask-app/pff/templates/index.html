@@ -5,8 +5,21 @@
 
 {% block content %}
 
-
     <div class="clearfix"></div> <!-- Text Section End -->
+
+    {% if abcdefghik %}
+    <aside id="about" class=" left">
+        <h3>{{ left_title }}</h3>
+        <p>{{ abcdefghik }}</p>
+    </aside>
+    <aside id="info" class=" left">
+        <h3>{{ right_title }}</h3>
+        <p>{{ xyz }} =
+
+        </p>
+        <p>{{ userxyz }}</p>
+    </aside>
+    {% endif %}
 {% endblock %}
 
 

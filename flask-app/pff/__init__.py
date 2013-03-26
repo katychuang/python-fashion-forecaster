@@ -1,8 +1,8 @@
 from flask import Flask
 import settings
 
-app = Flask('pff')
-app.config.from_object('pff.settings')
+app = Flask('frame')
+app.config.from_object('frame.settings')
 
 import views
 

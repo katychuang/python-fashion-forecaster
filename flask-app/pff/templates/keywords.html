@@ -1,14 +1,32 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block css %}
-    {{ block.super }}
+<style>
+
+    .flotr-datagrid-container{border:1px solid #999;border-bottom:none;background:#fff}
+    .flotr-datagrid{border-collapse:collapse;border-spacing:0}
+    .flotr-datagrid td,.flotr-datagrid th{border:1px solid #ccc;padding:1px 3px;min-width:2em}
+    .flotr-datagrid tr:hover,.flotr-datagrid col.hover{background:#f3f3f3}
+    .flotr-datagrid tr:hover th,.flotr-datagrid th.hover{background:#999;color:#fff}
+    .flotr-datagrid th{text-align:left;background:#e3e3e3;border:2px outset #fff}
+    .flotr-datagrid-toolbar{padding:1px;border-bottom:1px solid #ccc;background:#f9f9f9}
+    .flotr-datagrid td:hover{background:#ccc}.flotr-datagrid .first-row th{text-align:center}
+    .flotr-canvas{margin-bottom:-3px;padding-bottom:1px}.flotr-tabs-group{border-top:1px solid #999}
+    .flotr-tab{border:1px solid #666;border-top:none;margin:0 3px;padding:1px 4px;
+        cursor:pointer;-moz-border-radius:0 0 4px 4px;-webkit-border-bottom-left-radius:4px;
+        -webkit-border-bottom-right-radius:4px;border-radius:0 0 4px 4px;opacity:.5;-moz-opacity:.5}
+    .flotr-tab.selected{background:#ddd;opacity:1;-moz-opacity:1}
+    .flotr-tab:hover{background:#ccc}
+    </style>
+
+
 {% endblock %}
 
 
 {% block content %}
 {% block example_chart %}
     {% include "includes/appMenu.html" %}
-    
+
     <p>&nbsp;</p>
 
     <div class="clearfix"></div> <!-- Text Section End -->
@@ -19,6 +37,19 @@
 
 
 	<h3>Bar Chart</h3>
+    <div>
+      <p>
+        The data on this page comes from ShopSense API
+        http://api.shopstyle.com/action/apiGetCategoryHistogram
+        and parsed with jQuery to render a canvas element line chart. Shows clothing
+        categories with count > 90000
+      </p>
+      <p>
+        ShopSense is a free service from ShopStyle that pays you for sending traffic to online retailers from your blog, website, or application.
+
+        https://shopsense.shopstyle.com/shopsense/7232734
+      </p>
+    </div>
     <div id="test" style="height:500px;overflow:auto;"></div>
 
 

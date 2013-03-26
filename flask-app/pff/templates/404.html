@@ -4,8 +4,8 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-        
-        
+
+
 
 	<!-- Basic Page Needs
   ================================================== -->
@@ -41,30 +41,10 @@
 	<div class="container">
 
 		<div class="sixteen columns">
+            <center><header><h1>Page not found</h1></header>
 
-		</div>
-		<hr>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <div class="flash">
-                     {% for message in messages %}
-                        <p>{{ message }}</p>
-                     {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
-
-        {% block twitter %}        {% endblock %}
-		
-		<hr>
-        
-        {% block content %}        {% endblock %}
-        
-        <hr>
-        
-        <p>Admin Actions: 
-            <a href="{{ url_for('list_posts') }}">View all updates</a> | <a href="{{ url_for('new_post') }}">New</a>
-        </p>
+        <img src="/static/underconstruction.png"></center>
+    </div>
 
         <span id="credits">
 		 	{% block credits %}{% endblock %}
@@ -84,12 +64,12 @@
     wf.async = 'true';
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(wf, s);
-  })(); 
-  
-	
-	</script>	
-	
-	
+  })();
+
+
+	</script>
+
+
 
 <!-- End Document
 ================================================== -->
