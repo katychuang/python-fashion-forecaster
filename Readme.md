@@ -1,3 +1,5 @@
+# This is the google app engine version, running on Flask
+
 This app is still in pre-alpha. This project was inspired by a book I read about the sociology of fashion. The author argues that fashion is a symbolic cultural product, dimensionally different from discussions on the articles of clothing. In the great words of Yuniya Kawamura, "fashion is not about clothes but is a belief". In her book, she clarifies the difference between a "fashion system" and a "clothing system", where fashion has intangible value yet propagated by cultural infrastructures promoting the activities of perceiving clothing as art.
 
 Reference: Kawamura, Yuniya. 2005. Fashion-ology. Oxford: Berg.
