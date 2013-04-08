@@ -1,7 +1,7 @@
 ** Instructions **
 
 1. Step one, saving data from Twitter API
-- Edit 'read_tweet.py' on line 44 with twitter handles
+- Use the cron scripts to save data to google app engine
 - Edit the same file on lines 47-50 with your MySQL database connection settings
 - Run the script 'read_tweet.py' 
 - This script will take JSON data and save username, tweet, and timestamp into a database.
